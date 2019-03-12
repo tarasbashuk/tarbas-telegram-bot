@@ -9,7 +9,7 @@ setInterval(function(){
 },300000);
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '780452028:AAH1_qj6n9OA1bF-4KuieY0OwrtyLe8KsuM';
+const token = '780452028:AAH1_qj6n9OA1bF-4KuieY0OwrtyLe8KsuM0';
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
