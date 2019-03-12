@@ -48,7 +48,7 @@ bot.on('message', (msg) => {
             msgArr.push(msg.text);
             break;
             case '/showmsg':
-            bot.sendMessage(chatId, msgArr);
+            bot.sendMessage(chatId, `Log: ${msgArr}`);
             break;
         default:
             bot.sendMessage(chatId, `Привіт, ${msg.from.first_name}! Отримав твоє повідомлення о ${new Date(msg.date * 1000).toLocaleTimeString()}`);
