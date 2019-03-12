@@ -47,9 +47,19 @@ bot.on('message', (msg) => {
             bot.sendMessage(chatId, `${msg.from.first_name}, у тебе залишилось  ${parseInt(timeLeft/3600)} : ${needZero(parseInt(timeLeft%3600/60))} : ${needZero(parseInt(timeLeft%60))}  до дедлайну`);
             msgArr.push(msg.text);
             break;
+
             case '/showmsg':
             bot.sendMessage(chatId, `Log: ${msgArr}`);
             break;
+
+            case '/setdeadline':
+            if (isNaN(msg.text)) {bot.sendMessage(chatId, 'Дедлайн має бути встновлено у форматі мм:дд:гг:хх');}
+            else {
+            deadline = new Date(msg.text);
+            bot.sendMessage(chatId, `Новий дедлайн: ${deadline}`);
+            }
+            break;
+
         default:
             bot.sendMessage(chatId, `Привіт, ${msg.from.first_name}! Отримав твоє повідомлення о ${new Date(msg.date * 1000).toLocaleTimeString()}`);
             msgArr.push(msg.text);
