@@ -30,23 +30,29 @@ const bot = new TelegramBot(token, {polling: true});
 // Listen for any kind of message. There are different kinds of
 // messages.
 const deadline = 1552417200;
-
+const msgArr =[];
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     switch (msg.text) {
         case '/start':
             bot.sendMessage(chatId, `Вітаю, ${msg.from.first_name}! Перелік, команд: \/deadline`);
+            msgArr.push(msg.text);
             break;
         case '/deadline':
-                   console.log(msg);
+            console.log(msg);
             const needZero = num => num > 9 ? num : `0${num}`;
             const time = new Date(msg.date * 1000);
             let timeLeft = (deadline - msg.date);
             bot.sendMessage(chatId, `${msg.from.first_name}, у тебе залишилось  ${parseInt(timeLeft/3600)} : ${needZero(parseInt(timeLeft%3600/60))} : ${needZero(parseInt(timeLeft%60))}  до дедлайну`);
+            msgArr.push(msg.text);
+            break;
+            case '/showmsg':
+            bot.sendMessage(chatId, msgArr);
             break;
         default:
             bot.sendMessage(chatId, `Привіт, ${msg.from.first_name}! Отримав твоє повідомлення о ${new Date(msg.date * 1000).toLocaleTimeString()}`);
+            msgArr.push(msg.text);
     }
 });
 // bot.on('message', (msg) => {
