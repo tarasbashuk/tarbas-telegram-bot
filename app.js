@@ -52,7 +52,7 @@ bot.on('message', (msg) => {
             bot.sendMessage(chatId, `Log: ${msgArr}`);
             break;
 
-            case msg.text.split(',')[0] === '/setdeadline':
+            case ()=>{ if (msg.text.split(',')[0] === '/setdeadline'){return '/setdeadline'}else return false }:
             if (isNaN(msg.text.split(',')[1])) {bot.sendMessage(chatId, 'Дедлайн має бути встновлено у форматі /setdedline,мм:дд:гг:хх');}
             else {
             deadline = new Date(msg.text.split(',')[1]);
